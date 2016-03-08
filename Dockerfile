@@ -70,10 +70,9 @@ RUN bash -c "make -C env /var/lib/postgresql/tablespaces && \
     make -C env update_etl data-integration ../vars"
 
 # Groovy installation
-RUN bash -c "curl -s get.gvmtool.net | bash && \
-    source "$HOME/.gvm/bin/gvm-init.sh" && \
-    gvm install groovy && \
-    gvm default groovy 2.4.4"
+RUN bash -c "curl -s get.sdkman.io | bash && \
+    echo -e "sdkman_auto_answer=false\nsdkman_auto_selfupdate=false\n" > $HOME/.sdkman/etc/config"
+RUN bash -lc "sdk install groovy"
 
 # Public data loading
 RUN service postgresql start && \
