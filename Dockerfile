@@ -62,13 +62,10 @@ ENV LC_ALL en_US.UTF-8
 # --------------
 
 # Fetching last stable tranSMART data repo
-RUN cd /tmp && \
-    git clone --progress https://github.com/transmart/transmart-data.git && \
-    cd transmart-data && \
-    git checkout tags/v1.2.4
+RUN git clone -b master --progress https://github.com/transmart/transmart-data.git /tmp/transmart-data
 
+# Preliminary DB's steps
 WORKDIR /tmp/transmart-data
-
 RUN bash -c "make -C env /var/lib/postgresql/tablespaces && \
     make -C env update_etl data-integration ../vars"
 
