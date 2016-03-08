@@ -75,8 +75,7 @@ RUN bash -c "curl -s get.sdkman.io | bash && \
 RUN bash -lc "sdk install groovy"
 
 # Public data loading
-RUN service postgresql start && \
-    bash -lc "source vars;make -j4 postgres && \
+RUN bash -lc "/etc/init.d/postgresql start && source vars;make -j4 postgres && \
     make update_datasets && \
     make -C samples/postgres load_clinical_GSE8581 && \
     make -C samples/postgres load_ref_annotation_GSE8581 && \
