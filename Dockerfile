@@ -89,8 +89,8 @@ RUN sed -i 's/'localhost'/'*'/' /etc/postgresql/9.3/main/postgresql.conf
 
 # R
 WORKDIR /tmp
-ADD includes/R/Rserve.conf /etc/Rserve.conf
-ADD includes/R/R_pkgs* /tmp/
+COPY includes/R/Rserve.conf /etc/Rserve.conf
+COPY includes/R/R_pkgs* /tmp/
 RUN wget -q "$r_debpackage_url" -O RRO.deb && \
     wget -q "$r_revomath_url" -O RevoMath.tar.gz && \
     wget -q "$r_rserve_url" -O Rserve.tar.gz && \
@@ -111,7 +111,7 @@ RUN bash -c "source vars;TSUSER_HOME=/usr/share/tomcat7/ make -C config/ install
 # --------------
 
 # Java
-ADD includes/setenv.sh /usr/share/tomcat7/bin/setenv.sh
+COPY includes/setenv.sh /usr/share/tomcat7/bin/setenv.sh
 RUN echo "JAVA_OPTS=\"-server -d64 -XX:+AggressiveOpts -XX:+UseAES -XX:+UseAESIntrinsics -XX:MaxHeapSize=$jdk_heap\" >> /usr/share/tomcat7/bin/setenv.sh" && \
     chmod +x /usr/share/tomcat7/bin/setenv.sh
 
@@ -123,15 +123,15 @@ RUN wget -q --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3
 # --------------
 
 # tranSMART Config
-ADD includes/Config-eTRIKS.groovy /usr/share/tomcat7/.grails/transmartConfig/Config.groovy
-ADD includes/tomcat7 /etc/default/tomcat7
+COPY includes/Config-eTRIKS.groovy /usr/share/tomcat7/.grails/transmartConfig/Config.groovy
+COPY includes/tomcat7 /etc/default/tomcat7
 
 # tranSMART WAR
 RUN wget -q -O /var/lib/tomcat7/webapps/transmart.war "$war_url"
 
 # --------------
 
-ADD includes/run.sh /root/run.sh
+COPY includes/run.sh /root/run.sh
 RUN chmod +x /root/run.sh
 
 # --------------
