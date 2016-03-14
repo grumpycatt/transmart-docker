@@ -140,4 +140,7 @@ RUN chmod +x /root/run.sh
 # Open ports
 EXPOSE 8080 8983 5432
 
+# Volumes
+VOLUME ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql", "/var/lib/tomcat7"]
+
 ENTRYPOINT ["/root/run.sh"]
