@@ -12,7 +12,7 @@ ENV jdk_heap=4G
 ENV jdk_url="http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-linux-x64.tar.gz"
 ENV r_debpackage_url="https://owncloud.etriks.org/index.php/s/mwGXYd3wopFVFza/download"
 ENV r_revomath_url="https://owncloud.etriks.org/index.php/s/lAUQz00IQICns9m/download"
-ENV r_rserve_url="http://www.rforge.net/src/contrib/Rserve_1.8-4.tar.gz"
+ENV r_rserve_url="http://www.rforge.net/Rserve/snapshot/Rserve_1.8-5.tar.gz"
 
 # tranSMART vars
 ENV PGDATABASE=transmart
@@ -31,11 +31,11 @@ USER root
 
 # Core
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  build-essential   \
-  curl   \
-  git    \
-  tar    \
-  wget  \
+  build-essential \
+  curl \
+  git \
+  tar \
+  wget \
   unzip \
   sudo \
   rsync \
