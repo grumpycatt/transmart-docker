@@ -38,11 +38,11 @@ These commands will deploy an eTRIKS-tranSMART environnment with the latest tran
     git clone https://github.com/grumpycatt/transmart-docker.git
     cd transmart-docker
     docker build --rm -t myrepo/transmart .
-    docker run -d -p 80:8080 5432:5432 8983:8983 --name transmart myrepo/transmart
+    docker run -d -p 80:8080 -p 5432:5432 -p 8983:8983 --name transmart myrepo/transmart
 
 #### Access
 
-    Launch your favorite browser and go to http://transmartIP
+    Launch your favorite browser and go to http://transmartIP/transmart
 
 #### Debug and core components
 
@@ -72,7 +72,7 @@ Check the logs :
 * Tomcat7
 * Oracle JDK 1.8u51
 * tranSMART 1.2.x
-* Groovy 2.4.4
+* Groovy 2.4.6
 * RRO 3.2.0
 * Rserve 1.8.x
 
